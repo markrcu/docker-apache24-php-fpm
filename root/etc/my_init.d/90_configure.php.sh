@@ -23,7 +23,7 @@ dockerize -template /app/php-session.tmpl > /etc/php/${PHP_VERSION}/fpm/conf.d/9
 dockerize -template /app/mpm_event.tmpl > /etc/apache2/mods-available/mpm_event.conf
 
 # Configure default site
-COUNT=`find  /etc/apache2/sites-enabled/ -type f`
+COUNT=`find  /etc/apache2/sites-enabled/ -type f | wc -l`
 if [[ $COUNT -eq 0 ]] && [[ $GENERATE_DEFAULT_VHOST != "false" ]]
  then 
 	dockerize -template /app/000-default.tmpl > /etc/apache2/sites-enabled/000-default.conf
